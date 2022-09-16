@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/mario-icone.png">
     <link rel="stylesheet" href="./css/style.css">
     <title>Mario Jump</title>
 </head>
 <body>
  
     <div class="game-board">
-
+        <p>Score: <span id="pontuacao">0</span></p>
         <img src="./img/clouds.png" class="clouds" alt="">
         <img src="./img/mario.gif" class="mario" alt="">
         <img src="./img/pipe.png" class="pipe" alt="">
 
-
-
-
-
     </div>
+
+    <button class="escondido" onclick="restart()">Restart</button>
+
     <script src="./js/script.js"></script>
 </body>
 </html>

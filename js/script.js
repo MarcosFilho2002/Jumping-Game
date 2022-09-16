@@ -1,6 +1,6 @@
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
-
+const btn = document.querySelector(".escondido");
 
  
 const jump = function() {
@@ -13,9 +13,26 @@ const jump = function() {
 }
 
 
+function aumentaPontuacao(){
+    let pontuacao = document.getElementById("pontuacao").textContent; //Pega apenas o conteúdo do elemento e não ele todo
+    valor = parseInt(pontuacao);
+    valor = valor + 1;
+    console.log(valor);
+    document.getElementById("pontuacao").innerText = valor;
+}
+
+const loop2 = setInterval(function(){
+    aumentaPontuacao();
+},1500)
+
+
 const loop = setInterval(function(){
     const pipePosition = pipe.offsetLeft;// O '+' na frente do window é para converter para numero
     const marioPosition = +window.getComputedStyle(mario).bottom.replace("px","");
+    
+    loop2;
+    
+
 
     console.log(marioPosition);
     //Condição para o jogo acabar
@@ -29,9 +46,12 @@ const loop = setInterval(function(){
         mario.src = "./img/game-over.png";
         mario.style.width = "75px";
         mario.style.marginLeft = "50px";
-
+        btn.classList.add("restart");
+        btn.classList.remove("escondido");
         clearInterval(loop); //Quando acaba o jogo, o loop para de rodar
-    } 
+        clearInterval(loop2);
+        
+    }
 },10);
 
 
@@ -42,22 +62,18 @@ const loop = setInterval(function(){
 document.addEventListener('keypress', (event)=> {    
     if(event.code == 'Space'){
         mario.classList.add("jump")
-
+        
         setTimeout(function(){
         mario.classList.remove("jump");
         },500);
     }
     
     
-    console.log(event.key);
-    console.log(event.code);
+    //console.log(event.key);
+    //console.log(event.code);
 });
 
+function restart(){
+    document.location.reload(true);
+}
 
-function enterKeyPressed(event) {
-    if (event.keyCode == 13) {
-       console.log("Enter key is pressed");
-    } else {
-       console.log("nada")
-    }
- }
